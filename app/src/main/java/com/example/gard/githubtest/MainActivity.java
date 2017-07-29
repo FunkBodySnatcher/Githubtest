@@ -7,19 +7,29 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView;
+    private TextView klikk;
+    private int clickCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textView = (TextView) findViewById(R.id.textView);
-        textView.setOnClickListener(new View.OnClickListener() {
+        klikk = (TextView) findViewById(R.id.klikk);
+        klikk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView.setText("Nice click man!");
-                textView.setOnClickListener(null);
+                klikk.setText("Nice click man!");
+
+                clickCounter++;
+
+                if(clickCounter == 2){
+
+                    klikk.setText("Bye!");
+                    klikk.animate().translationYBy(-2000).setDuration(2000);
+
+                }
+
             }
         });
     }
